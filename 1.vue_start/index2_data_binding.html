@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue data binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .she{
+            background-color: yellow;
+            padding:20px;
+        }
+        .she>label{
+            display: block;
+        }
+        table{
+            border:1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="he">
+        <h2>{{greeting}}</h2>
+        <form>
+            <label>
+                用户名:<input type="text" v-bind:value="nameval"> 
+            </label>
+        </form>
+        <a v-bind:href="url" :alt="alt"  v-bind:title="alt">{{alt}}</a>
+    </div>
+    <hr>
+    <div id="she">
+        <h2>{{title}}</h2>
+        <div class="she">
+            <label for="">
+                    <input type="checkbox"  v-model="selecteds" value="看电影"> 看电影
+            </label>
+            <label for="">
+                    <input type="checkbox" v-model="selecteds" value="跑步">  跑步
+
+            </label>
+            <label for="">
+                    <input type="checkbox" v-model="selecteds" value="读书"> 读书
+            </label>
+            
+        </div>
+        <h3 v-if="selecteds.length">你的爱好友：{{selecteds.join(",")}}</h3>
+        <h3 v-else>但你选择了上面的选项后，这里会显示一句话</h3>
+    </div>
+
+<hr>
+    <div id="me">
+        <h2>{{title}}</h2>
+        <div class="she">
+            <label> 
+                用户名:<input type="text" v-model="val" :place-holder="pls">
+            </label>
+            <label> 
+                    性别:<input type="text" v-model="gender" >
+            </label>             
+            <label> 
+                    年龄:<input type="text" v-model="age" >
+            </label> 
+            <label> 
+                    身高:<input type="text" v-model="height">
+            </label>                       
+            <button v-on:click="addUser">添加</button>
+        </div>
+        <ul v-if="users && users.length">
+            <table border="1px">
+        
+                <tr v-for="user,index in users">
+                    <td>{{index}}</td>
+                    <td>你的名字是:{{user.name}}</td>
+                    <td>你的年龄是:{{user.age}}</td>
+                    <td>你的身高是:{{user.height}}</td>
+                    <td>你的性别是:{{user.gender}}</td>
+                </tr>
+            </table>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#he",
+            data:{
+                greeting:" 这个html 主要练习的是 data binding",
+                url:"http://www.hao123.com",
+                alt:"hao123",
+                nameval:"zhangdong"
+            }
+        });
+
+
+        setTimeout(() => {
+            vm.greeting = "欢迎使用 vue  data binding v-";
+        }, 3000);
+
+
+        var vm2 = new Vue({
+            el:"#she",
+            data:{
+                title:"请选择你的爱好",
+                selecteds:[]
+            }
+        });
+
+
+
+        var vm3 = new Vue({
+            el:"#me",
+            data:{
+                title:" 这里展示的是 条件语句，循环语句 和 事件方法click",
+                val:"",
+                pls:"请输入用户名",
+                age:"",
+                height:"",
+                gender:"",
+                users:[]
+            },
+            methods:{
+                addUser:function(){
+                    if(!this.val){
+                        return;
+                    }
+                    this.age = this.age||20;
+                    this.gender = this.gender||"m";
+                    this.height = this.height||171;
+
+                    var o = {name:this.val,age:this.age,gender:this.gender,height:this.height}
+
+                    this.users.push(o);
+                    this.age = "";
+                    this.height = "";
+                    this.gender = "";
+                    this.val = "";
+                }
+            }
+
+        });
+
+
+    </script>
+</body>
+</html>

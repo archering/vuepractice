@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="fst">
+        <h1>{{msg}}</h1>
+        <h3>
+        ${oth}
+        </h3>
+    </div>
+    <script>
+        new Vue({
+            el:"#fst",
+            delimiters:["{{","}}"],
+            data:{
+                msg:"vue 默认情况下是用 {{}} 来绑定model层的数据的,可以通过delimiters:[] 来修改"
+            }      
+        });
+
+        new Vue({
+            el:"#fst",
+            delimiters:["${","}"],
+            data:{
+                oth:"这里的数据就是通过新修改delimiters 绑定到dom上的 '[${','}']' "
+            }
+        });
+
+    </script>
+</body>
+</html>

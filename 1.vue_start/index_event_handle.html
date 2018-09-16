@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue data binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .she{
+            background-color: yellow;
+            padding:20px;
+        }
+        .she>label{
+            display: block;
+        }
+        table{
+            border:1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="he">
+        <h3> v-bind的简写是  ：  ，  v-on 的简写是 @  </h3>
+        <h3>
+            v-bind:value   简写为  :value
+        </h3>
+        <h3>
+            v-on:click  简写  @click
+        </h3>
+        <h2>{{greeting}}</h2>
+        <form>
+            <label>
+                用户名:<input type="text" v-bind:value="nameval" v-on:input="typing"> 
+            </label>
+        </form>
+        <a v-bind:href="url" :alt="alt"  v-bind:title="alt"   v-on:mouseover="doover" @mouseout="doout" >{{alt}}</a>
+        <button v-on:click="doclick">点击</button>
+        <p>
+            {{pre}} {{action}}
+        </p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#he",
+            data:{
+                url:"http://www.hao123.com",
+                alt:"hao123",
+                pre:"你正在",
+                action:""
+            },
+            methods:{
+                doover:function(){
+                    this.action = "mouseover";
+                },
+                doout:function(){
+                    this.action = "mouseout";
+                },
+                doclick:function(){
+                    this.action = "button click";
+                },
+                typing:function(){
+                    this.action="typing";
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+</html>

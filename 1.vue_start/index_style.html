@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue data binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .she{
+            background-color: yellow;
+            padding:20px;
+        }
+        .she>label{
+            display: block;
+        }
+        table{
+            border:1px;
+        }
+        button{
+            padding:10px;
+            background-color: #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        div{
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="he">
+        <div :style="{border:'1px solid #ccc'}">ng-bind:style 这里显示</div>
+        <div :style="divcss">这里的style 是 通过变量实现的</div>
+        <div :style="[divcss,divcss2]">层叠样式，+ 多变量</div>
+        <div>
+            <button @mouseover="divcss.margin='40px'">bigger</button>
+            <button @mouseover="divcss.margin='10px'">smaller</button>
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#he",
+            data:{
+                url:"http://www.hao123.com",
+                alt:"hao123",
+                pre:"你正在",
+                action:"",
+                divcss:{
+                    margin:"20px",
+                    border:"1px solid red",
+                    backgroundColor:"#ddd"
+                },
+                divcss2:{
+                    fontSize:"20px",
+                    backgroundColor:"pink",
+                    margin:"15px",
+                    padding:"10px"
+                }
+
+            },
+            methods:{
+                doover:function(){
+                    this.action = "mouseover";
+                },
+                doout:function(){
+                    this.action = "mouseout";
+                },
+                doclick:function(){
+                    this.action = "button click";
+                },
+                typing:function(){
+                    this.action="typing";
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+</html>
