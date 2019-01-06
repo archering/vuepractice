@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="fst">
+        <ul>
+            <li v-for="item in arr">
+                <div>{{item.name | capitalize}}</div>
+                <div>
+                    <div>{{item.money|currency}}</div>
+                    <div>{{item.date}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:"#fst",
+            data:{
+                arr:[
+                    {
+                        name:"zhangdong",
+                        money:30000,
+                        date:Date.now()
+                    },
+                    {
+                        name:"dow jone",
+                        money:3409,
+                        date:Date.now()
+                    },
+                    {
+                        name:"lenco c",
+                        money:9999.89,
+                        date:Date.now()
+                    },
+                    {
+                        name:"mack jone ken",
+                        money:90989,
+                        date:Date.now()
+                    }                                         
+                ]
+            }
+        });
+
+    </script>
+</body>
+</html>
